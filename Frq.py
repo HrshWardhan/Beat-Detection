@@ -52,7 +52,7 @@ while idx < data_len - 48000:
         queue.pop(0)
         count+=var(queue)/(data_len/1024)
         local_energy = local(queue)
-        c = 2.5 - var(queue)/54528895948223.86
+        c = 2.5
         print(c)
         flag = False
         if (c*local_energy < foo):
