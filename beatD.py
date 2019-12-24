@@ -2,11 +2,10 @@ import scipy.io.wavfile, numpy, sys, subprocess
 import time
 le_multi = 0.023219955 # Local energy multiplier ~ 1024/44100
 def sumsquared(arr):
-    sum = 0
+    sum = 0.0
     for k in arr:
             i=k/10000
-            #i[1]/=10000
-            sum = sum + ((i[0] * i[0]) + (i[1] * i[1]))
+            sum += ((i[0] * i[0]) + (i[1] * i[1]))
     return sum
 
 def var(queue):
@@ -28,7 +27,7 @@ def local(queue):
     return sum
 
 if sys.argv.__len__() < 2:
-    print 'USAGE: wavdsp <wavfile>'
+    print ('USAGE: wavdsp <wavfile>')
     sys.exit(1)
 
 numpy.set_printoptions(threshold=sys.maxsize)
@@ -50,13 +49,14 @@ while idx < data_len - 48000:
         queue.pop(0)
         queue.append(instant_energy)
         local_energy = le_multi * local(queue)
-        c = (-0.000000025714*var(queue))+1.8142857
+        print(var(queue))
+        c = (-0.0025714*var(queue))+1.5142857
         #print str(c*local_energy) + " " + str(instant_energy) 
-        if (instant_energy > (local_energy*c)):
+        if (instant_energy > (local_energy*1.3)):
             i+=1
             #print str(c*local_energy) + " " + str(instant_energy) 
             foo.append((1.0*idx)/44100)
-            print ((1.0*idx)/44100)
+            #print ((1.0*idx)/44100)
         idx = idx + 1024
     else:
         dat = data[idx:idx+1024]
