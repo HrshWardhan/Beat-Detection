@@ -49,14 +49,13 @@ while idx < data_len - 48000:
         queue.pop(0)
         queue.append(instant_energy)
         local_energy = le_multi * local(queue)
-        print(var(queue))
         c = (-0.0025714*var(queue))+1.5142857
         #print str(c*local_energy) + " " + str(instant_energy) 
         if (instant_energy > (local_energy*1.3)):
             i+=1
             #print str(c*local_energy) + " " + str(instant_energy) 
             foo.append((1.0*idx)/44100)
-            #print ((1.0*idx)/44100)
+            print ((1.0*idx)/44100)
         idx = idx + 1024
     else:
         dat = data[idx:idx+1024]
