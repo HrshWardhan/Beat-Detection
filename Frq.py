@@ -50,15 +50,13 @@ while idx < data_len - 48000:
         foo = sumsquared(dat)
         queue.append(foo)
         queue.pop(0)
-        count+=var(queue)/(data_len/1024)
         local_energy = local(queue)
-        c = 2.5
-        print(c)
+   	c = 2.5
         flag = False
         if (c*local_energy < foo):
             flag = True
         if flag:
-            #print((1.0*idx)/44100)
+            print((1.0*idx)/44100)
             count += 0
         idx = idx + 1024
     else:
