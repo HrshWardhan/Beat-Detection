@@ -8,6 +8,7 @@ def sumsquared(arr):
     krr = (arr[:, 0] + 1j * arr[:, 1])
     ff = numpy.fft.fft(krr)
     brr = []
+	a = 1
     for i in range(0,6):
         sum += abs(ff[i])
     return sum
